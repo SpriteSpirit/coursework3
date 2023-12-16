@@ -64,3 +64,19 @@ def format_transactions(transaction: dict) -> str:
             f"{amount} {currency}\n")
 
 
+def check_valid_transactions_data(transactions_list: list) -> list:
+    """
+    Делает сортировку данных по заданным параметрам.
+    :param transactions_list: Список всех транзакций.
+    :return: Отсортированный и валидный список транзакций.
+    """
+    transfer_transaction = [
+        transaction for transaction in transactions_list
+        if transaction.get('state') == 'EXECUTED' and
+        all(key in transaction for key in ('date', 'from', 'to', 'description')) and
+        'operationAmount' in transaction and
+        all(key in transaction['operationAmount'] for key in ('amount', 'currency')) and
+        'name' in transaction['operationAmount']['currency']
+    ]
+
+    return transfer_transaction

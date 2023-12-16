@@ -29,3 +29,11 @@ def mask_account_number(account_number: str) -> str:
     """
     return f"{account_number[:-20]}**{account_number[-4:]}"
 
+
+def mask_date(date: str) -> str:
+    """
+    Создает маску-шаблон для вывода даты по заданному формату.
+    :param date: Дата транзакции вместе со временем.
+    :return: Отформатированная дата по шаблону ДД.ММ.ГГГГ
+    """
+    return f"{date[8:10]}.{date[5:7]}.{date[:4]}"

@@ -82,3 +82,14 @@ def check_valid_transactions_data(transactions_list: list) -> list:
     return transfer_transaction
 
 
+def get_last_transactions(last: int, executed_transactions: list) -> list:
+    """
+    Возвращает последние указанные транзакции.
+    :param last: Количество последних транзакций для просмотра.
+    :param executed_transactions: Выполненные операции.
+    :return: Список последних операций.
+    """
+    executed_transactions.sort(key=lambda x: x['date'], reverse=True)
+    last_transactions = executed_transactions[:last]
+
+    return last_transactions

@@ -44,3 +44,53 @@ def test_check_valid_transactions_data(file_fixture):
          'operationAmount': {'amount': '6357.56', 'currency': {'name': 'USD', 'code': 'USD'}},
          'description': 'Перевод организации', 'from': 'Visa Gold 3654412434951162',
          'to': 'Счет 59986621134048778289'}]
+
+
+def test_get_last_transactions(file_fixture):
+    assert func.get_last_transactions(3, file_fixture) == [
+        {
+            "id": 736942989,
+            "state": "EXECUTED",
+            "date": "2019-09-06T00:48:01.081967",
+            "operationAmount": {
+                "amount": "6357.56",
+                "currency": {
+                    "name": "USD",
+                    "code": "USD"
+                }
+            },
+            "description": "Перевод организации",
+            "from": "Visa Gold 3654412434951162",
+            "to": "Счет 59986621134048778289"
+        },
+        {
+            "id": 86608620,
+            "state": "EXECUTED",
+            "date": "2019-08-16T04:23:41.621065",
+            "operationAmount": {
+                "amount": "6004.00",
+                "currency": {
+                    "name": "руб.",
+                    "code": "RUB"
+                }
+            },
+            "description": "Перевод с карты на счет",
+            "from": "MasterCard 8826230888662405",
+            "to": "Счет 96119739109420349721"
+        },
+        {
+            "id": 917824439,
+            "state": "EXECUTED",
+            "date": "2019-07-18T12:27:13.355343",
+            "operationAmount": {
+                "amount": "82139.20",
+                "currency": {
+                    "name": "руб.",
+                    "code": "RUB"
+                }
+            },
+            "description": "Перевод с карты на карту",
+            "from": "Visa Platinum 6942697754917688",
+            "to": "МИР 2956603572573342"
+        },
+    ]

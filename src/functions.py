@@ -21,3 +21,11 @@ def mask_card_number(card_number: str) -> str:
     return f"{card_number[:-16]}{card_number[-16:-12]} {card_number[-12:-10]}** **** {card_number[-4:]}"
 
 
+def mask_account_number(account_number: str) -> str:
+    """
+    Создает маску-шаблон для скрытия номера счета.
+    :param account_number: Номер счета, включая слово Счет.
+    :return: Маска номера счета по заданному шаблону.
+    """
+    return f"{account_number[:-20]}**{account_number[-4:]}"
+

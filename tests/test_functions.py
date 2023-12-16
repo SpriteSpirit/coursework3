@@ -94,3 +94,30 @@ def test_get_last_transactions(file_fixture):
             "to": "МИР 2956603572573342"
         },
     ]
+
+
+def test_display_last_transactions(capsys, valid_data):
+    func.display_last_transactions(valid_data)
+    captured = capsys.readouterr()
+    expected_output = """16.08.2019 Перевод с карты на счет
+MasterCard 8826 23** **** 2405 -> Счет **9721
+6004.00 руб.
+
+06.05.2019 Перевод со счета на счет
+Счет **7520 -> Счет **4470
+74895.83 руб.
+
+27.02.2019 Перевод с карты на счет
+MasterCard 8847 38** **** 3026 -> Счет **3377
+69311.35 руб.
+
+18.07.2019 Перевод с карты на карту
+Visa Platinum 6942 69** **** 7688 -> МИР 2956 60** **** 3342
+82139.20 руб.
+
+06.09.2019 Перевод организации
+Visa Gold 3654 41** **** 1162 -> Счет **8289
+6357.56 USD
+
+"""
+    assert captured.out == expected_output

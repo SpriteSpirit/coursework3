@@ -93,3 +93,12 @@ def get_last_transactions(last: int, executed_transactions: list) -> list:
     last_transactions = executed_transactions[:last]
 
     return last_transactions
+
+
+def display_last_transactions(transactions: list) -> None:
+    """
+    Выводит отформатированные данные по транзакциям.
+    :param transactions: Список валидных транзакций.
+    """
+    for transaction in transactions:
+        print(format_transactions(transaction))

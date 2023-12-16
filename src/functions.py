@@ -37,3 +37,30 @@ def mask_date(date: str) -> str:
     :return: Отформатированная дата по шаблону ДД.ММ.ГГГГ
     """
     return f"{date[8:10]}.{date[5:7]}.{date[:4]}"
+
+
+def format_transactions(transaction: dict) -> str:
+    """
+    Форматирует все данные в заданном формате и подготавливает их к выводу.
+    :param transaction: Валидная транзакция в виде словаря.
+    :return: Отформатированный вывод информации по транзакции по указанному шаблону.
+    """
+    date = mask_date(transaction['date'])
+    description = transaction['description']
+
+    mask_account_from = mask_account_number(transaction['from'])
+    mask_card_from = mask_card_number(transaction['from'])
+    _from = mask_account_from if 'Счет' in transaction['from'] else mask_card_from
+
+    mask_account_to = mask_account_number(transaction['to'])
+    mask_card_to = mask_card_number(transaction['to'])
+    _to = mask_account_to if 'Счет' in transaction['to'] else mask_card_to
+
+    amount = transaction['operationAmount']['amount']
+    currency = transaction['operationAmount']['currency']['name']
+
+    return (f"{date} {description}\n"
+            f"{_from} -> {_to}\n"
+            f"{amount} {currency}\n")
+
+

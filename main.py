@@ -1,16 +1,6 @@
-# This is a sample Python script.
+from src.functions import *
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    all_data = get_all_transactions('src/operations.json')
+    valid_data = get_last_transactions(5, check_valid_transactions_data(all_data))
+    display_last_transactions(valid_data)

@@ -73,10 +73,10 @@ def check_valid_transactions_data(transactions_list: list) -> list:
     transfer_transaction = [
         transaction for transaction in transactions_list
         if transaction.get('state') == 'EXECUTED' and
-        all(key in transaction for key in ('date', 'from', 'to', 'description')) and
-        'operationAmount' in transaction and
-        all(key in transaction['operationAmount'] for key in ('amount', 'currency')) and
-        'name' in transaction['operationAmount']['currency']
+           all(key in transaction for key in ('date', 'from', 'to', 'description')) and
+           'operationAmount' in transaction and
+           all(key in transaction['operationAmount'] for key in ('amount', 'currency')) and
+           'name' in transaction['operationAmount']['currency']
     ]
 
     return transfer_transaction
@@ -102,3 +102,9 @@ def display_last_transactions(transactions: list) -> None:
     """
     for transaction in transactions:
         print(format_transactions(transaction))
+
+
+if __name__ == '__main__':
+    all_data = get_all_transactions('operations.json')
+    valid_data = get_last_transactions(5, check_valid_transactions_data(all_data))
+    display_last_transactions(valid_data)
